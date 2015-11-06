@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20151106171927) do
     t.string   "fname"
     t.string   "lname"
     t.string   "email"
-    t.string   "url"
+    t.string   "website"
     t.string   "git"
     t.string   "password_digest"
     t.datetime "created_at"

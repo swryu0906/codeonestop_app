@@ -1,0 +1,13 @@
+<div class="user-image">
+
+<h2 class="text-center"><%= @user.fname %> <%= @user.lname %></h2>
+<p class="text-center"><%= link_to @user.website, @user.website %></p>
+<p class="text-center"><%= link_to @user.git, @user.git %></p>
+
+<p>
+  <%= link_to "Edit", edit_user_path(@user), class: "btn btn-link" %>
+  <%= link_to "Delete", @user, method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-link" %>
+  <%= link_to "Users List", users_path, class: "btn btn-link" %>
+</p>
+
+</div>

@@ -1,0 +1,33 @@
+<%= form_for @user do |f| %>
+  <div class="form-group">
+    <%= f.label "First Name" %>
+    <%= f.text_field :fname, class: "form-control", autofocus: true %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Last Name" %>
+    <%= f.text_field :lname, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Email" %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label "URL" %>
+    <%= f.text_field :website, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Git" %>
+    <%= f.text_field :git, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit class: "button" %>
+  </div>
+<% end %>

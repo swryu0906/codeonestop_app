@@ -5,6 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+@u1 = User.create(fname: "Sungwon", lname: "Ryu", email: "swryu0906@gmail.com", website: "http://www.codeonestop.com", git: "", password: "1234", password_confirmation: "1234")
+@u2 = User.create(fname: "Anthony", lname: "Ng", email: "baruchvita.anthonyng@gmail.com", website: "", git: "", password: "1234", password_confirmation: "1234")
+@u3 = User.create(fname: "Steve", lname: "Chen", email: "steve.l.chen@gmail.com", website: "", git: "", password: "1234", password_confirmation: "1234")
+@u4 = User.create(fname: "Luis", lname: "Arce", email: "luisarce5@gmail.com", website: "", git: "", password: "1234", password_confirmation: "1234")
+@u4 = User.create(fname: "Ace", lname: "Bi", email: "a@b.com", website: "", git: "", password: "1234", password_confirmation: "1234")
+@u4 = User.create(fname: "Ceci", lname: "Di", email: "a@c.com", website: "", git: "", password: "1234", password_confirmation: "1234")
+
+
+
 @p1 = Post.create(title: "Sungwon's Portfolio", link: "http://portfolio.codeonestop.com", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.
 
 Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh.

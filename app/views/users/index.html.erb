@@ -1,0 +1,32 @@
+<h1>Users List</h1>
+
+<div id="users">
+  <table class="table table-bordered table-hover">
+    <tr>
+      <th class="text_center">ID</th>
+      <th class="text_center">First Name</th>
+      <th class="text_center">Last Name</th>
+      <th class="text_center">Email</th>
+      <th class="text_center">URL</th>
+      <th class="text_center">Git</th>
+      <th class="text_center">Actions</th>
+    </tr>
+  <% @users.each do |user| %>
+    <%= div_for user do %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.fname.titleize %></td>
+        <td><%= user.lname.titleize %></td>
+        <td><%= user.email %></td>
+        <td><%= link_to user.website, user.website, target: "_blank", class: "btn btn-link" %></td>
+        <td><%= link_to user.git, user.git, target: "_blank", class: "btn btn-link" %></td>
+        <td>
+          <%= link_to "Profile", user, class: "btn btn-link" %>
+          <%= link_to "Edit", edit_user_path(user), class: "btn btn-link" %>
+          <%= link_to "Delete", user, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-link" %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+  </table>
+</div>
