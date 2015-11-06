@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.2.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -45,3 +45,7 @@ group :development do
   gem 'spring'
 end
 
+group :production do
+  # Heroku
+  gem 'rails_12factor'
+end
