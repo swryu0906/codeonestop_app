@@ -1,0 +1,21 @@
+<div id="posts">
+<% @posts.each do |post| %>
+  <%= div_for post do %>
+    <div class="post_image">
+    <%= link_to post.title, post_path(post) %>
+    </div>
+    <div class="post_content">
+      <div class="title">
+        <h2><%= link_to post.title.titleize, post_path(post) %></h2>
+      </div>
+      <div class="data clearfix">
+        <p class="username">Shared by User.Name</p>
+        <p class="buttons">
+          <span><i>Comments_icon</i> post.comments.count </span>
+          <span><i>Comments_up_icon</i> post.get_likes.size </span>
+        </p>
+      </div><!-- /.data   -->
+    </div><!-- /.post_content  -->
+  <% end %><!-- /#div_for -->
+<% end %>
+</div><!-- /#posts -->

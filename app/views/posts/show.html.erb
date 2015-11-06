@@ -1,0 +1,36 @@
+<div id="post_show">
+  <h1>@post.title</h1>
+  <p class="username">Shared by @post.user.name about <%= time_ago_in_words(@post.created_at) %></p>
+  <div class="clearfix">
+    <div class="post_image_body">
+      image_tag @post.image.url(:large)
+      <div class="post_body">
+        <%= @post.body %>
+      </div>
+      <div class="post_data">
+        <%= link_to "Visit Link", @post.link, class: "button", target: "_blank" %>
+        link_to like_post_path(@post), method: :put, class: "data" do <br>
+          <i class="fa fa-thumbs-o-up"></i> pluralize(@post.get_upvotes.size, "Like") <br>
+        link_to dislike_post_path(@post), method: :put, class: "data" do <br>
+          <i class="fa fa-thubms-o-down"></i> pluralize(@post.get_downvotes.size, "Dislike") <br>
+        <p class="data">
+          <i class="fa fa-comments-o"></i> pluralize(@post.comments.count, "Comment") <br>
+          if @post.user == current_user
+            <%= link_to "Edit", edit_post_path(@post), class: "data" %>
+            <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "data" %>
+        </p>
+      </div><!-- /.post_body -->
+    </div><!-- /.post_image_body -->
+  </div><!-- /.clearfix -->
+</div><!-- /#post_show -->
+
+<div id="responses">
+  <h2 class="response_count"> pluralize(@post.responses.count, "Response") </h2>
+  @responses.each do |response| <br>
+    div_for response do <br>
+      <p class="username"> response.user.name </p>
+      <p class="content"> response.content </p>
+    end <br>
+
+  render 'responses/form'
+</div>
