@@ -1,6 +1,15 @@
-<div id="posts">
+<div class="row text-center">
+<% if current_user %>
+  <h2 class="intro">Hello <%= current_user.fname %></h2>
+<% else %>
+  <h2 class="intro">What's your coding problem?</h2>
+<% end %>
+  <h3 class="intro"><span>Share your knowledge and see what's stimulating your curiosity.</span></h3>
+</div>
+
+<div id="posts row">
 <% @posts.each do |post| %>
-  <%= div_for post do %>
+  <%= div_for post, class: "col-md-4" do %>
     <div class="post_image">
     <%= link_to post.title, post_path(post) %>
     </div>

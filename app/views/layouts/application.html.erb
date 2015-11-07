@@ -2,26 +2,40 @@
 <html>
 <head>
   <title>CodeonestopApp</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<ul>
-<% if current_user %>
-  <li><%= current_user.fname.titleize %></li>
-  <li><%= link_to "Log out", logout_path, method: :delete %></li>
-<% else %>
-  <li><%= link_to "Log in", login_path %></li>
-  <li><%= link_to "Sign up", signup_path %></li>
-<% end %>
-</ul>
+<%= render partial: 'layouts/nav' %>
 
+<div class="container-fluid">
+  <div class="col-md-10 col-md-offset-1">
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<%= yield %>
+    <% flash.each do |type, content| %>
+      <% if content.respond_to?('each') %>
+        <% content.each do |item| %>
+          <%= render 'layouts/alert', type: type, content: item %>
+        <% end %>
+      <% else %>
+        <%= render 'layouts/alert', type: type, content: content %>
+      <% end %>
+    <% end %>
 
+    <%= yield %>
+
+  </div>
+</div>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 </body>
 </html>
