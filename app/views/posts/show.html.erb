@@ -1,21 +1,19 @@
 <div class="row">
-  <div id="post_show" class="col-md-6">
-
+  <div id="post_show" class="col-lg-6 col-md-8 col-sm-12">
     <h1><%= @post.title %></h1>
     <p class="username">Shared by <%= link_to "#{@post.user.fname} #{@post.user.lname}", @post.user %> about <%= time_ago_in_words(@post.created_at) %> ago</p>
-
-    <div class="clearfix">
+    <!-- <div class="clearfix"> -->
       <div class="post_image_body">
         image_tag @post.image.url(:large)
         <div class="post_body">
           <%= h(@post.body).gsub(/\n/, '<br/>').html_safe %>
         </div>
-
       </div><!-- /.post_image_body -->
-    </div><!-- /.clearfix  -->
-  </div><!-- /#post_show.col-md-6 -->
-  <div class="col-md-6">
-    <div class="post_data col-md-5 row">
+    <!-- </div> /.clearfix -->
+  </div><!-- /#post_show.col-lg-6.col-md-9.col-sm-12 -->
+
+  <div class="col-lg-6 col-md-4 col-sm-12">
+    <div class="post_data col-lg-5 col-md-12">
       <div class="row">
       <%= link_to "Visit Link", @post.link, class: "button", target: "_blank" %>
       </div>
@@ -31,20 +29,23 @@
           <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "data" %>
         <% end %>
       </p>
-    </div><!-- /.post_data.col-md-5 -->
-    <div class="other-posts col-md-7">
-      <h2 class="text-center">More from User</h2>
-    </div><!-- /.other-posts.col-md-8 -->
-  </div><!-- /.post_data.col-md-6.row-->
+    </div><!-- /.post_data.col-lg-5.col-md-12 -->
+    <div class="other-posts col-lg-7 col-md-12">
+      <h3>More from User</h3>
+    </div><!-- /.other-posts.col-lg-5.col-md-12 -->
+  </div><!-- /.post_data.col-lg-6.col-md-3 -->
 </div><!-- /.row -->
 
-<div id="responses">
-  <h2 class="response_count"> pluralize(@post.responses.count, "Response") </h2>
-  @responses.each do |response| <br>
-    div_for response do <br>
-      <p class="username"> response.user.name </p>
-      <p class="content"> response.content </p>
-    end <br>
-
+<div class="row">
+  <div id="responses" class="col-lg-6 col-md-8 col-sm-12">
+    <h2 class="response_count"><%= pluralize(@post.responses.count, "Response") %></h2>
+    <% @responses.each do |response| %>
+      <%= div_for response do %>
+        <h3><%= response.title.titleize %></h3>
+        <p class="username"><%= response.user.fname %> <%= response.user.lname %></p>
+        <p class="content"><%= response.content %></p>
+      <% end %><!-- /#div_for -->
+    <% end %>
+  </div><!-- /#responses -->
+</div><!-- /.row -->
   render 'responses/form'
-</div>

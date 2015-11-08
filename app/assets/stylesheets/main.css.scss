@@ -11,13 +11,8 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 100;
 }
 
-.button {
-  border: 1px solid #9B9B9B;
-  padding: .7rem 1.25rem;
-  border-radius: .3rem;
-  outline: none;
-  background: white;
-  color: #9B9B9B;
+.container-fluid {
+  max-width: 1680px;
 }
 
 nav.navbar.navbar-default {
@@ -42,4 +37,13 @@ nav.navbar.navbar-default {
       }
     }
   }
+}
+
+.button {
+  border: 1px solid #9B9B9B;
+  padding: .7rem 1.25rem;
+  border-radius: .3rem;
+  outline: none;
+  background: white;
+  color: #9B9B9B;
 }

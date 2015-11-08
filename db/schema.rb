@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20151108044846) do
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "responses", force: :cascade do |t|
+    t.string   "title"
     t.text     "content"
     t.integer  "post_id"
     t.integer  "user_id"

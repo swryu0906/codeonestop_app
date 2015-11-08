@@ -7,6 +7,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @responses = @post.responses
   end
 
   def new
@@ -26,6 +27,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
