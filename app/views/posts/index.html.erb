@@ -9,7 +9,7 @@
 
 <div id="posts row">
 <% @posts.each do |post| %>
-  <%= div_for post, class: "col-md-4" do %>
+  <%= div_for post, class: "col-md-4 col-sm-6 col-xs-12" do %>
     <div class="post_image">
     <%= link_to post.title, post_path(post) %>
     </div>

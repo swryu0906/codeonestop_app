@@ -10,7 +10,7 @@ class ResponsesController < ApplicationController
     if @response.save
       redirect_to :back, notice: "Response '@response.title' was successfully created!"
     else
-      render :post_path(@post)
+      redirect_to :back
     end
   end
 
@@ -18,7 +18,7 @@ class ResponsesController < ApplicationController
     if @response.update(response_params)
       redirect_to :back, notice: "Response '#{@response.title}' was successfully updated!"
     else
-      render :post_path(@post)
+      redirect_to :back
     end
   end
 
@@ -27,7 +27,7 @@ class ResponsesController < ApplicationController
     if @response.destroy
       redirect_to :back, notice: "Response '#{response_title}' was successfully deleted!"
     else
-      render :post_path(@post)
+      redirect_to :back
     end
   end
 

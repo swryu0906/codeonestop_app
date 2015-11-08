@@ -1,0 +1,27 @@
+<%= div_for response do %>
+  <div class="row">
+    <div class="col-lg-6 col-md-8 col-sm-12">
+
+      <h3><%= response.title.titleize %></h3>
+      <p class="username"><%= response.user.fname %> <%= response.user.lname %></p>
+      <p class="content"><%= response.content %></p>
+
+      <% if current_user && current_user == response.user %>
+        <h3>Edit response</h3>
+        <%= form_for [@post, response] do |f| %>
+          <div class="form-group">
+            <%= f.label :title %>
+            <%= f.text_field :title, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :content %>
+            <%= f.text_area :content, rows: 10, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.submit class: "button" %>
+          </div>
+        <% end %><!-- /form_for -->
+      <% end %><!-- /if -->
+    </div>
+  </div>
+<% end %><!-- /#div_for -->

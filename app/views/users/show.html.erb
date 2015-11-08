@@ -1,8 +1,9 @@
-<div class="user-image">
-
-<h2 class="text-center"><%= @user.fname %> <%= @user.lname %></h2>
-<p class="text-center"><%= link_to @user.website, @user.website %></p>
-<p class="text-center"><%= link_to @user.git, @user.git %></p>
+<div class="row">
+  <div class="user-image"></div>
+  <h2 class="text-center"><%= @user.fname %> <%= @user.lname %></h2>
+  <p class="text-center"><%= link_to @user.website, @user.website %></p>
+  <p class="text-center"><%= link_to @user.git, @user.git %></p>
+</div>
 
 
 
@@ -15,9 +16,9 @@
   <h3 class="intro"><span>Share your knowledge and see what's stimulating your curiosity.</span></h3>
 </div>
 
-<div id="post row">
+<div id="user_posts row">
 <% @posts.each do |post| %>
-  <%= div_for post, class: "col-md-4" do %>
+  <%= div_for post, class: "col-md-4 col-sm-6 col-xs-12" do %>
     <div class="post_image">
     <%= link_to post.title, post_path(post) %>
     </div>
@@ -37,6 +38,7 @@
 <% end %>
 </div><!-- /#post -->
 
+<div class="row">
 <% if current_user == @user %>
 <p>
   <%= link_to "Edit", edit_user_path(@user), class: "btn btn-link" %>
@@ -44,5 +46,4 @@
   <%= link_to "Users List", users_path, class: "btn btn-link" %>
 </p>
 <% end %>
-
 </div>

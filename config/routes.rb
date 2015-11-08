@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy', as: 'logout'
   resources :users
   resources :posts do
-    resources :response, only: [:create, :update, :destroy]
+    resources :responses#, only:  [:create, :update, :destroy]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
