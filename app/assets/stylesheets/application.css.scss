@@ -14,4 +14,6 @@
  *= require_self
  */
 
-@import 'main.css.scss'
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import 'main.css.scss';

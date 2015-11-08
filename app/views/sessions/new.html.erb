@@ -1,1 +1,7 @@
-<%= render partial: 'sessions/modal' %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#modal-md").find("h1#modal-label").text("Log in");
+    $("#modal-md").find(".modal-body").html("<%=j  render partial: 'sessions/form' %>");
+    $("#modal-md").modal('show');
+  });
+</script>

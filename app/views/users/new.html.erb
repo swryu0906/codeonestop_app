@@ -1,3 +1,7 @@
-<h1 class="text-center">User Registration</h1>
-
-<%= render partial: 'form' %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#modal-md").find("h1#modal-label").text("Sign up");
+    $("#modal-md").find(".modal-body").html("<%=j  render partial: 'users/form' %>");
+    $("#modal-md").modal('show');
+  });
+</script>
