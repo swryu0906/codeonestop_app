@@ -4,10 +4,45 @@
 <p class="text-center"><%= link_to @user.website, @user.website %></p>
 <p class="text-center"><%= link_to @user.git, @user.git %></p>
 
+
+
+<div class="row text-center">
+<% if current_user %>
+  <h2 class="intro">Hello <%= current_user.fname %></h2>
+<% else %>
+  <h2 class="intro">What's your coding problem?</h2>
+<% end %>
+  <h3 class="intro"><span>Share your knowledge and see what's stimulating your curiosity.</span></h3>
+</div>
+
+<div id="post row">
+<% @posts.each do |post| %>
+  <%= div_for post, class: "col-md-4" do %>
+    <div class="post_image">
+    <%= link_to post.title, post_path(post) %>
+    </div>
+    <div class="post_content">
+      <div class="title">
+        <h2><%= link_to post.title.titleize, post_path(post) %></h2>
+      </div>
+      <div class="data clearfix">
+        <p class="username">Shared by <%= link_to "#{post.user.fname.titleize} #{post.user.lname.titleize}", post.user %></p>
+        <p class="buttons">
+          <span><i>Comments_icon</i> post.comments.count </span>
+          <span><i>Comments_up_icon</i> post.get_likes.size </span>
+        </p>
+      </div><!-- /.data   -->
+    </div><!-- /.post_content  -->
+  <% end %><!-- /#div_for -->
+<% end %>
+</div><!-- /#post -->
+
+<% if current_user == @user %>
 <p>
   <%= link_to "Edit", edit_user_path(@user), class: "btn btn-link" %>
   <%= link_to "Delete", @user, method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-link" %>
   <%= link_to "Users List", users_path, class: "btn btn-link" %>
 </p>
+<% end %>
 
 </div>

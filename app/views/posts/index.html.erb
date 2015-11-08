@@ -1,6 +1,6 @@
 <div class="row text-center">
 <% if current_user %>
-  <h2 class="intro">Hello <%= current_user.fname %></h2>
+  <h2 class="intro">Hello <%= current_user.fname.titleize %></h2>
 <% else %>
   <h2 class="intro">What's your coding problem?</h2>
 <% end %>

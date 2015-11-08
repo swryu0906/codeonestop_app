@@ -1,9 +1,10 @@
-<h1 class="text-center">Users List</h1>
+<h1 class="text-center">User List</h1>
 
-<div id="users">
+<div id="users_table" class="row">
   <table class="table table-bordered table-hover">
     <tr>
       <th class="text-center">ID</th>
+      <th class="text-center">Admin</th>
       <th class="text-center">First Name</th>
       <th class="text-center">Last Name</th>
       <th class="text-center">Email</th>
@@ -15,6 +16,7 @@
     <%= div_for user do %>
       <tr>
         <td><%= user.id %></td>
+        <td></td>
         <td><%= user.fname.titleize %></td>
         <td><%= user.lname.titleize %></td>
         <td><%= user.email %></td>
@@ -29,4 +31,28 @@
     <% end %>
   <% end %>
   </table>
-</div>
+</div><!-- /#users_table -->
+
+<div class="row">
+<% @users.each do |user| %>
+  <%= div_for user, class: "row" do %>
+    <div class="col-md-1">
+      link_to (image_tag user.image.url(:large)), user
+    </div>
+    <div class="col-md-5">
+      <h3><%= link_to "#{user.fname.titleize} #{user.lname.titleize}", user %></h3>
+      <p><%= user.email %></p>
+      <p><%= link_to user.website, user.website, target: "_blank", class: "btn btn-link" %></p>
+      <p><%= link_to user.git, user.git, target: "_blank", class: "btn btn-link" %></p>
+    </div>
+    <div class="col-md-6 row">
+      <% user.posts.order(created_at: :desc).limit(3).each do |post| %>
+      <div class="col-md-4">
+        <p> link_to post.images[0].url(:thumb), post </p>
+        <p><%= link_to post.title.titleize, post %></p>
+      </div>
+      <% end %>
+    </div><!-- /.col-md-6.row -->
+  <% end %><!-- /#div_for -->
+<% end %>
+</div><!-- /.row -->

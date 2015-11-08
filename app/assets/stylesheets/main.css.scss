@@ -1,3 +1,7 @@
+html {
+  font-size: 16px;
+}
+
 body {
   font-family: "Proxima Nova";
   font-weight: 100;
@@ -18,20 +22,24 @@ h1, h2, h3, h4, h5, h6 {
 
 nav.navbar.navbar-default {
   background: transparent;
-  font-size: 1.65rem;
-  a {
-    color: #9b9b9b;
-    text-decoration: none;
-    &:hover {
-      color: #50a7c7;
+  min-height: 70px;
+  .container-fluid {
+    margin-top: 10px;
+    font-size: 1.0rem;
+    a {
+      color: #9b9b9b;
+      text-decoration: none;
+      &:hover {
+        color: #50a7c7;
+      }
     }
-  }
-  .navbar-brand {
-    font-size: 2.75rem;
-    color: #333233;
-    text-decoration: none;
-    &:hover {
-      color: #50a7c7;
+    .navbar-brand {
+      font-size: 1.6rem;
+      color: #333233;
+      text-decoration: none;
+      &:hover {
+        color: #50a7c7;
+      }
     }
   }
 }

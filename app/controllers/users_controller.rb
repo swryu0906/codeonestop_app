@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, except: [:index, :show, :new, :create]
 
   def index
-    @users = User.all
+    @users = User.all.order(:id)
   end
 
   def show
+    @posts = @user.posts
   end
 
   def new
