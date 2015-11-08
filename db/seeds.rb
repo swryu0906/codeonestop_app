@@ -6,6 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+Response.delete_all
+Post.delete_all
+User.delete_all
+
+
 @u1 = User.create(fname: "Sungwon", lname: "Ryu", email: "swryu0906@gmail.com", website: "http://www.codeonestop.com", git: "", password: "1234", password_confirmation: "1234")
 @u2 = User.create(fname: "Anthony", lname: "Ng", email: "baruchvita.anthonyng@gmail.com", website: "", git: "", password: "1234", password_confirmation: "1234")
 @u3 = User.create(fname: "Steve", lname: "Chen", email: "steve.l.chen@gmail.com", website: "", git: "", password: "1234", password_confirmation: "1234")

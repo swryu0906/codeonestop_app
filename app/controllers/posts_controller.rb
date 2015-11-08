@@ -13,6 +13,10 @@ class PostsController < ApplicationController
   def new
     # @post = Post.new
     @post = current_user.posts.build
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
@@ -27,7 +31,10 @@ class PostsController < ApplicationController
   end
 
   def edit
-
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def update
