@@ -9,8 +9,11 @@ Rails.application.routes.draw do
   resources :users
 
   resources :posts do
+    member do
+      get 'upvote' => 'posts#upvote'
+      get 'downvote' => 'posts#downvote'
+    end
     resources :responses, only: [:new, :create]
-    resources :comments, only: [:new, :create]
   end
   resources :responses, only: [:edit, :update, :delete]
   resources :comments, only: [:edit, :update, :delete]

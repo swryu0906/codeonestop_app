@@ -1,73 +1,75 @@
-<div class="row">
-  <div class="col-lg-12">
-    <h1><%= @post.title %></h1>
-    <p class="username">Shared by <%= link_to "#{@post.user.fname} #{@post.user.lname}", @post.user %> about <%= time_ago_in_words(@post.created_at) %> ago</p>
+<div id="post_show">
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h1><%= @post.title %></h1>
+      <p class="username">Shared by <%= link_to "#{@post.user.fname} #{@post.user.lname}", @post.user %> about <%= time_ago_in_words(@post.created_at) %> ago</p>
+    </div>
+  </div><!-- /.row -->
+
+  <div class="row clearfix">
+    <div class="col-lg-6 col-md-8 col-sm-12">
+      <div id="post_image_body">
+
+        image_tag @post.image.url(:large)
+
+        <div class="post_body">
+          <%= h(@post.body).gsub(/\n/, '<br/>').html_safe %>
+        </div>
+      </div><!-- /.post_image_body -->
+    </div><!-- /#post_show.col-lg-6.col-md-9.col-sm-12 -->
+
+
+    <div class="col-lg-3 col-md-4 col-sm-12">
+      <div id="post_data">
+        <%= link_to "Visit Link", @post.link, class: "button", target: "_blank" %>
+
+        <%= link_to upvote_post_path(@post), method: :get, remote: true, class: "data" do %>
+          <i class="fa fa-thumbs-o-up"></i>  <span class="like"><%= pluralize(@post.get_upvotes.size, "Like") %></span>
+        <% end %>
+
+        <%= link_to downvote_post_path(@post), method: :get, remote: true, class: "data" do %>
+          <i class="fa fa-thumbs-o-down"></i>  <span class="dislike"><%= pluralize(@post.get_downvotes.size, "Dislike") %></span>
+        <% end %>
+
+        <%= link_to '#responses', class: "data" do %>
+          <i class="fa fa-comments-o"></i>  <span class="comments"><%= pluralize(@post.responses.count, "Response") %></span>
+        <% end %>
+
+        <% if current_user == @post.user %>
+          <%= link_to "Edit", edit_post_path(@post), class: "data", data: { remote: true, "data-toggle": "modal", "data-target": "#modal-lg" } %>
+          <%= link_to "Delete", @post, method: :delete, data: { confirm: "Are you sure?" }, class: "data" %>
+        <% end %>
+
+      </div><!-- /.post_data -->
+    </div><!-- /.post_data.col-lg-2.col-md-4.col-sm-12 -->
+
+    <div class="col-lg-3 col-md-4 col-sm-12">
+      <div id="other_posts">
+        <h3>Other Posts</h3>
+      </div><!-- /#other_posts -->
+    </div><!-- /.other-posts.col-lg-2.col-md-4.col-sm-12 -->
+  </div><!-- /.row -->
+
+
+  <div class="new-response row">
+    <div class="col-lg-6 col-md-8 col-md-12">
+      <h3>Write a response</h3>
+      <%= link_to "Add a New Response", new_post_response_path(@post), class: "button", data: { remote: true, "data-toggle": "modal", "data-target": "#modal-lg" } %>
+    </div><!-- /.col-lg-6.col-md-8.col-md-12 -->
+  </div><!-- /.new-response.row -->
+
+
+  <div class="response-count row">
+    <div class="col-lg-6 col-md-8 col-sm-12">
+      <h2 class="response_count"><%= pluralize(@post.responses.count, "Response") %></h2>
+    </div><!-- /.col-lg-6.col-md-8.col-md-12 -->
+  </div><!-- /.response-count.row -->
+
+  <div id="responses">
+    <% @responses.each do |response| %>
+      <%= render response, locals: { response: response } %>
+    <% end %>
   </div>
-</div><!-- /.row -->
 
-
-<div class="row">
-  <div id="post_show" class="col-lg-6 col-md-8 col-sm-12">
-    <div class="post_image_body">
-
-      image_tag @post.image.url(:large)
-
-      <div class="post_body">
-        <%= h(@post.body).gsub(/\n/, '<br/>').html_safe %>
-      </div>
-    </div><!-- /.post_image_body -->
-  </div><!-- /#post_show.col-lg-6.col-md-9.col-sm-12 -->
-
-
-  <div class="col-lg-3 col-md-4 col-sm-12">
-    <div class="">
-      <%= link_to "Visit Link", @post.link, class: "button", target: "_blank" %>
-    </div>
-    <div class="">
-      <% if current_user == @post.user %>
-        <%= link_to "Edit", edit_post_path(@post), class: "button", data: { remote: true, "data-toggle": "modal", "data-target": "#modal-lg" } %>
-        <%= link_to "Delete", @post, method: :delete, data: { confirm: "Are you sure?" }, class: "button" %>
-      <% end %>
-    </div>
-
-    <br>
-    link_to like_post_path(@post), method: :put, class: "data" do <br>
-      <i class="fa fa-thumbs-o-up"></i> pluralize(@post.get_upvotes.size, "Like") <br>
-    link_to dislike_post_path(@post), method: :put, class: "data" do <br>
-      <i class="fa fa-thubms-o-down"></i> pluralize(@post.get_downvotes.size, "Dislike") <br>
-
-    <p class="data">
-      <i class="fa fa-comments-o"></i> pluralize(@post.comments.count, "Comment") <br>
-      <% if @post.user == current_user %>
-        <%= link_to "Edit", edit_post_path(@post), class: "data", data: { remote: true, "data-toggle": "modal", "data-target": "#modal-lg" } %>
-        <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "data" %>
-      <% end %>
-    </p>
-
-  </div><!-- /.post_data.col-lg-2.col-md-4.col-sm-12 -->
-
-  <div class="other-posts col-lg-3 col-md-4 col-sm-12">
-    <h3>More from User</h3>
-  </div><!-- /.other-posts.col-lg-2.col-md-4.col-sm-12 -->
-</div><!-- /.row -->
-
-
-<div class="new-response row">
-  <div class="col-lg-6 col-md-8 col-md-12">
-    <h3>Write a response</h3>
-    <%= link_to "Add a New Response", new_post_response_path(@post), class: "button", data: { remote: true, "data-toggle": "modal", "data-target": "#modal-lg" } %>
-  </div><!-- /.col-lg-6.col-md-8.col-md-12 -->
-</div><!-- /.new-response.row -->
-
-
-<div class="response-count row">
-  <div class="col-lg-6 col-md-8 col-sm-12">
-    <h2 class="response_count"><%= pluralize(@post.responses.count, "Response") %></h2>
-  </div><!-- /.col-lg-6.col-md-8.col-md-12 -->
-</div><!-- /.response-count.row -->
-
-<div id="responses">
-  <% @responses.each do |response| %>
-    <%= render response, locals: { response: response } %>
-  <% end %>
-</div>
+</div><!-- /.post_show -->

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :authorize, except: [:index, :show]
 
   def index
@@ -51,6 +51,20 @@ class PostsController < ApplicationController
       redirect_to posts_path, notice: "Post '#{post_title}' was successfully deleted!"
     else
       redirect_to :back
+    end
+  end
+
+  def upvote
+    @post.liked_by current_user
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def downvote
+    @post.disliked_by current_user
+    respond_to do |format|
+      format.js
     end
   end
 

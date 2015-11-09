@@ -1,0 +1,8 @@
+$('#post_data').find('span.like').fadeOut();
+$('#post_data').find('span.dislike').fadeOut();
+
+$('#post_data').find('span.like').fadeIn();
+$('#post_data').find('span.dislike').fadeIn();
+
+$('#post_data').find('span.like').text("<%=j pluralize(@post.get_upvotes.size, "Like") %>");
+$('#post_data').find('span.dislike').text ("<%=j pluralize(@post.get_downvotes.size, "Dislike") %>");
