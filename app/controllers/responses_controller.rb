@@ -1,6 +1,6 @@
 class ResponsesController < ApplicationController
   before_action :set_post, only: [:new, :create]
-  before_action :set_response, only: [:edit, :update, :destroy]
+  before_action :set_response, only: [:edit, :update, :destroy, :upvote, :downvote]
 
   def new
     @response = @post.responses.build
@@ -43,6 +43,20 @@ class ResponsesController < ApplicationController
       redirect_to :back, notice: "Response '#{response_title}' was successfully deleted!"
     else
       redirect_to :back
+    end
+  end
+
+  def upvote
+    @response.liked_by current_user
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def downvote
+    @response.disliked_by current_user
+    respond_to do |format|
+      format.js
     end
   end
 

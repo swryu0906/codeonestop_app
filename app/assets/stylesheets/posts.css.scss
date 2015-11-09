@@ -126,7 +126,12 @@
 		padding: 2rem 0;
     .wrapper {
   		border-bottom: 1px solid #E9E9E9;
-  		.content {
+      .username {
+        .batables {
+          text-align: right;
+        }
+      }
+      .content {
   			margin: 0;
   			color: #969696;
   		}

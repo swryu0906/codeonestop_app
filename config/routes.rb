@@ -15,8 +15,12 @@ Rails.application.routes.draw do
     end
     resources :responses, only: [:new, :create]
   end
-  resources :responses, only: [:edit, :update, :delete]
-  resources :comments, only: [:edit, :update, :delete]
+  resources :responses, only: [:edit, :update, :delete] do
+    member do
+      get 'upvote' => 'responses#upvote'
+      get 'downvote' => 'responses#downvote'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

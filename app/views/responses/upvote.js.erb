@@ -1,0 +1,8 @@
+$(("#response_" + "<%=j @response.id %>")).find('span.like').fadeOut();
+$(("#response_" + "<%=j @response.id %>")).find('span.dislike').fadeOut();
+
+$(("#response_" + "<%=j @response.id %>")).find('span.like').fadeIn();
+$(("#response_" + "<%=j @response.id %>")).find('span.dislike').fadeIn();
+
+$(("#response_" + "<%=j @response.id %>")).find('span.like').text("<%=j pluralize(@response.get_upvotes.size, "Like") %>");
+$(("#response_" + "<%=j @response.id %>")).find('span.dislike').text("<%=j pluralize(@response.get_downvotes.size, "Dislike") %>");
