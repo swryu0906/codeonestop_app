@@ -1,0 +1,7 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#modal-lg").find("h1#modal-label").text("Add a New Response");
+    $("#modal-lg").find(".modal-body").html("<%=j  render partial: 'responses/form' %>");
+    $("#modal-lg").modal('show');
+  });
+</script>

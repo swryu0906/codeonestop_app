@@ -1,16 +1,31 @@
 class ResponsesController < ApplicationController
-  before_action :set_post
-  before_action :set_response, only: [:update, :destroy]
+  before_action :set_post, only: [:new, :create]
+  before_action :set_response, only: [:edit, :update, :destroy]
+
+  def new
+    @response = @post.responses.build
+    @response.user = current_user
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
   def create
-    @response = Response.new(response_params)
-    @response.user_id = current_user.id
-    @response.post_id = @post.id
+    @response = @post.responses.build(response_params)
+    @response.user = current_user
 
     if @response.save
       redirect_to :back, notice: "Response '@response.title' was successfully created!"
     else
       redirect_to :back
+    end
+  end
+
+  def edit
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 

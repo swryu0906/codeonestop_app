@@ -1,27 +1,16 @@
-<%= div_for response do %>
-  <div class="row">
-    <div class="col-lg-6 col-md-8 col-sm-12">
+<%= div_for response, class: "row" do %>
+  <div class="col-lg-6 col-md-8 col-sm-12">
 
-      <h3><%= response.title.titleize %></h3>
-      <p class="username"><%= response.user.fname %> <%= response.user.lname %></p>
-      <p class="content"><%= response.content %></p>
+    <h3><%= response.title.titleize %></h3>
+    <p class="username"><%= response.user.fname %> <%= response.user.lname %></p>
+    <p class="content"><%= response.content %></p>
 
-      <% if current_user && current_user == response.user %>
-        <h3>Edit response</h3>
-        <%= form_for [@post, response] do |f| %>
-          <div class="form-group">
-            <%= f.label :title %>
-            <%= f.text_field :title, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :content %>
-            <%= f.text_area :content, rows: 10, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.submit class: "button" %>
-          </div>
-        <% end %><!-- /form_for -->
-      <% end %><!-- /if -->
+    <% if current_user && current_user == response.user %>
+
+    <div class="actions">
+      <%= link_to "Edit", edit_response_path(response), class: "btn btn-link", data: { remote: true, "data-toggle": "modal", "data-target": "#modal-lg" } %>
+      <%= link_to "Delete", response_path(response), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-link" %>
     </div>
+    <% end %><!-- /if -->
   </div>
 <% end %><!-- /#div_for -->
