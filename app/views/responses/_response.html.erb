@@ -1,8 +1,8 @@
 <%= div_for response, class: "row" do %>
-  <div class="col-lg-6 col-md-8 col-sm-12">
+  <div class="wrapper col-lg-6 col-md-8 col-sm-12">
 
     <h3><%= response.title.titleize %></h3>
-    <p class="username"><%= response.user.fname %> <%= response.user.lname %></p>
+    <p class="username">Shared by <%= link_to "#{response.user.fname} #{response.user.lname }", user_path(response.user), class: "btn btn-link" %> about <%= time_ago_in_words(response.created_at) %> ago</p>
     <p class="content"><%= response.content %></p>
 
     <% if current_user && current_user == response.user %>

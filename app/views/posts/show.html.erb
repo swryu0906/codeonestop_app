@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-lg-12">
       <h1><%= @post.title %></h1>
-      <p class="username">Shared by <%= link_to "#{@post.user.fname} #{@post.user.lname}", @post.user %> about <%= time_ago_in_words(@post.created_at) %> ago</p>
+      <p class="username">Shared by  <%= link_to "#{@post.user.fname} #{@post.user.lname}", @post.user, class: 'btn btn-link' %>  about <%= time_ago_in_words(@post.created_at) %> ago</p>
     </div>
   </div><!-- /.row -->
 
@@ -50,26 +50,18 @@
       </div><!-- /#other_posts -->
     </div><!-- /.other-posts.col-lg-2.col-md-4.col-sm-12 -->
   </div><!-- /.row -->
+</div><!-- /.post_show -->
 
-
-  <div class="new-response row">
-    <div class="col-lg-6 col-md-8 col-md-12">
-      <h3>Write a response</h3>
-      <%= link_to "Add a New Response", new_post_response_path(@post), class: "button", data: { remote: true, "data-toggle": "modal", "data-target": "#modal-lg" } %>
-    </div><!-- /.col-lg-6.col-md-8.col-md-12 -->
-  </div><!-- /.new-response.row -->
-
-
-  <div class="response-count row">
-    <div class="col-lg-6 col-md-8 col-sm-12">
-      <h2 class="response_count"><%= pluralize(@post.responses.count, "Response") %></h2>
+<div id="responses">
+  <div class="row">
+    <div class="wrapper col-lg-6 col-md-8 col-sm-12">
+      <h2 class="response_count col-xs-6"><%= pluralize(@post.responses.count, "Response") %></h2>
+      <p class="text-right"><%=link_to "Add a New Response", new_post_response_path(@post), class: "button", data: { remote: true, "data-toggle": "modal", "data-target": "#modal-lg" } %></p>
     </div><!-- /.col-lg-6.col-md-8.col-md-12 -->
   </div><!-- /.response-count.row -->
 
-  <div id="responses">
-    <% @responses.each do |response| %>
-      <%= render response, locals: { response: response } %>
-    <% end %>
-  </div>
+  <% @responses.each do |response| %>
+    <%= render response, locals: { response: response } %>
+  <% end %>
 
-</div><!-- /.post_show -->
+</div><!-- /#responses -->
